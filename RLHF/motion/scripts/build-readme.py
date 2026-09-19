@@ -15,6 +15,15 @@ def clip(name, alt):
     return [f'![{alt}](videos/{name}.gif)', '', f'<sub>▶ [mp4](videos/{name}.mp4)</sub>']
 
 
+def math(tex):
+    r"""Display equation as a ```math fence: GitHub renders it with MathJax and markdown
+    never touches it (a bare $$…$$ line glued to a paragraph gets its _ and \, eaten)."""
+    tex = tex.strip()
+    if tex.startswith('$$') and tex.endswith('$$'):
+        tex = tex[2:-2].strip()
+    return ['', '```math', tex, '```', '']
+
+
 def is_img(l):
     return l.startswith('![') and 'github.com/Esmail-ibraheem/Axon/assets' in l
 
@@ -69,7 +78,7 @@ for l in src:
     elif k == 'rlhf_step22':
         out += clip('08-hf-reward-model', 'Phase 2: reward model training')
     elif k == 'Pasted image 20240429125320':
-        out += [PTX_OBJ, ''] + clip('10-ppo-ptx-objective', 'The PPO-ptx objective and the KL penalty')
+        out += math(PTX_OBJ) + clip('10-ppo-ptx-objective', 'The PPO-ptx objective and the KL penalty')
     elif l.startswith('where ![image]('):
         out.append(r'where $\pi^{\mathrm{RL}}_\phi$')
     elif k == 'Pasted image 20240429132323':
@@ -79,17 +88,17 @@ for l in src:
     elif k == 'Scheme-of-Deep-Reinforcement-Learning':
         out += clip('13-trajectories', 'Scheme of deep RL and the trajectory equations')
     elif k in EQ:
-        out.append(EQ[k])
+        out += math(EQ[k])
     elif k == 'image' and 'a64ce3e8' in l:
-        out.append(PPO_OBJ)
+        out += math(PPO_OBJ)
     elif k == 'Pasted image 20240429153634':
-        out += PPO_LOSSES + [''] + clip('14-ppo-loss', 'The PPO loss and the clipped probability ratio')
+        out += sum((math(e) for e in PPO_LOSSES), []) + clip('14-ppo-loss', 'The PPO loss and the clipped probability ratio')
     elif k == 'Pasted image 20240501133952':
         out += clip('15-ppo-algorithm', 'Algorithm 1: PPO, Actor-Critic style')
     elif k == 'Pasted image 20240430135953':
         out += clip('16-dpo-vs-rlhf', 'RLHF versus DPO')
     elif k == 'Pasted image 20240501142641':
-        out += [DPO_LOSS, ''] + clip('17-dpo-derivation', 'Deriving the DPO objective, its implicit reward and its gradient')
+        out += math(DPO_LOSS) + clip('17-dpo-derivation', 'Deriving the DPO objective, its implicit reward and its gradient')
     elif k == 'Pasted image 20240501144218':
         out += clip('18-dpo-theory', 'Theoretical analysis of DPO')
     elif l.startswith('### Preliminaries:'):
@@ -102,6 +111,15 @@ for l in src:
         raise SystemExit('unhandled image line: ' + l[:80])
     else:
         out.append(l)
+
+# The original's own standalone $$…$$ lines are just as fragile on GitHub: fence them too (prose untouched).
+fenced = []
+for l in out:
+    if l.startswith('$$') and l.rstrip().endswith('$$') and len(l) > 4:
+        fenced += math(l)
+    else:
+        fenced.append(l)
+out = fenced
 
 # The RM loss is inline LaTeX inside a paragraph; drop the clip in right after that paragraph.
 for j, l in enumerate(out):

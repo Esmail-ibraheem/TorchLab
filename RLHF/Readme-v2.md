@@ -144,7 +144,10 @@ How to capture human sentiments in samples and curated text? What is the loss! *
 **Reinforcement learning (RL).** Once again following Stiennon et al. (2020), we fine-tuned the SFT model on our environment using PPO (Schulman et al., 2017). The environment is a bandit environment which presents a random customer prompt and expects a response to the prompt. Given the prompt and response, it produces a reward determined by the reward model and ends the episode. In addition, we add a per-token KL penalty from the SFT model at each token to mitigate over optimization of the reward model. The value function is initialized from the RM. We call these models “PPO.” 
 
 We also experiment with mixing the pretraining gradients into the PPO gradients, in order to fix the performance regressions on public NLP datasets. We call these models “PPO-ptx.” We maximize the following combined objective function in RL training:
-$$\mathrm{objective}(\phi) = \mathbb{E}_{(x,y)\sim D_{\pi^{\mathrm{RL}}_\phi}}\Big[ r_\theta(x,y) - \beta \log\big(\pi^{\mathrm{RL}}_\phi(y \mid x) / \pi^{\mathrm{SFT}}(y \mid x)\big) \Big] + \gamma\, \mathbb{E}_{x \sim D_{\mathrm{pretrain}}}\Big[\log\big(\pi^{\mathrm{RL}}_\phi(x)\big)\Big]$$
+
+```math
+\mathrm{objective}(\phi) = \mathbb{E}_{(x,y)\sim D_{\pi^{\mathrm{RL}}_\phi}}\Big[ r_\theta(x,y) - \beta \log\big(\pi^{\mathrm{RL}}_\phi(y \mid x) / \pi^{\mathrm{SFT}}(y \mid x)\big) \Big] + \gamma\, \mathbb{E}_{x \sim D_{\mathrm{pretrain}}}\Big[\log\big(\pi^{\mathrm{RL}}_\phi(x)\big)\Big]
+```
 
 ![The PPO-ptx objective and the KL penalty](videos/10-ppo-ptx-objective.gif)
 
@@ -204,26 +207,54 @@ As said previously, the goal in RL is to select a policy which maximizes the exp
 <sub>▶ [mp4](videos/13-trajectories.mp4)</sub>
 
 return when the agent acts according to it. More formally:
-$$\pi^* = \arg\max_\pi J(\pi)$$
+
+```math
+\pi^* = \arg\max_\pi J(\pi)
+```
+
 
 The expected return of a policy is the expected return over all possible trajectories.
-$$J(\pi) = \int_\tau P(\tau \mid \pi)\, R(\tau) = \mathop{\mathbb{E}}_{\tau \sim \pi}\big[R(\tau)\big]$$
+
+```math
+J(\pi) = \int_\tau P(\tau \mid \pi)\, R(\tau) = \mathop{\mathbb{E}}_{\tau \sim \pi}\big[R(\tau)\big]
+```
+
 
 A trajectory is a series of (action, state), starting from an initial state
-$$\tau = (s_0, a_0, s_1, a_1, \ldots)$$
+
+```math
+\tau = (s_0, a_0, s_1, a_1, \ldots)
+```
+
 
 We will model the next state as being stochastic (suppose that the cat is drunk and doesn’t always succeed in moving correctly)
-$$s_{t+1} \sim P(\cdot \mid s_t, a_t)$$
+
+```math
+s_{t+1} \sim P(\cdot \mid s_t, a_t)
+```
+
 
 We can thus define the probability of a trajectory as follows:
-$$P(\tau \mid \pi) = \rho_0(s_0) \prod_{t=0}^{T-1} P(s_{t+1} \mid s_t, a_t)\, \pi(a_t \mid s_t)$$
+
+```math
+P(\tau \mid \pi) = \rho_0(s_0) \prod_{t=0}^{T-1} P(s_{t+1} \mid s_t, a_t)\, \pi(a_t \mid s_t)
+```
+
 
 We will always work with discounted rewards (we prefer immediate rewards instead of future):
-$$R(\tau) = \sum_{t=0}^{\infty} \gamma^t r_t$$
+
+```math
+R(\tau) = \sum_{t=0}^{\infty} \gamma^t r_t
+```
+
 
 This is an expectation, which means we can approximate it with a sample mean by collecting a set D of trajectories.
 
-$$\hat g = \frac{1}{|\mathcal{D}|} \sum_{\tau \in \mathcal{D}} \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, R(\tau), \qquad \theta_{k+1} = \theta_k + \alpha\, \nabla_\theta J(\pi_\theta)\big|_{\theta_k}$$
+
+```math
+\hat g = \frac{1}{|\mathcal{D}|} \sum_{\tau \in \mathcal{D}} \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, R(\tau), \qquad \theta_{k+1} = \theta_k + \alpha\, \nabla_\theta J(\pi_\theta)\big|_{\theta_k}
+```
+
 
 ---
 
@@ -233,14 +264,33 @@ $$\hat g = \frac{1}{|\mathcal{D}|} \sum_{\tau \in \mathcal{D}} \sum_{t=0}^{T} \n
 
 **Algorithm** The surrogate losses from the previous sections can be computed and differentiated with a minor change to a typical policy gradient implementation. For implementations that use automatic differentation, one simply constructs the loss $L^{CLIP}$ or $L^{KLPEN}$ instead of $L^{PG}$, and one performs multiple steps of stochastic gradient ascent on this objective. Most techniques for computing variance-reduced advantage-function estimators make use a learned state-value function $V (s)$; for example, generalized advantage estimation [Sch+15a], or the 4 finite-horizon estimators in [Mni+16]. If using a neural network architecture that shares parameters between the policy and value function, we must use a loss function that combines the policy surrogate and a value function error term. This objective can further be augmented by adding an entropy bonus to ensure sufficient exploration, as suggested in past work [Wil92; Mni+16]. Combining these terms, we obtain the following objective, which is (approximately) maximized each iteration: 
 
-$$L_t^{\mathrm{CLIP}+\mathrm{VF}+S}(\theta) = \hat{\mathbb{E}}_t\Big[ L_t^{\mathrm{CLIP}}(\theta) - c_1 L_t^{\mathrm{VF}}(\theta) + c_2 S[\pi_\theta](s_t) \Big]$$
+
+```math
+L_t^{\mathrm{CLIP}+\mathrm{VF}+S}(\theta) = \hat{\mathbb{E}}_t\Big[ L_t^{\mathrm{CLIP}}(\theta) - c_1 L_t^{\mathrm{VF}}(\theta) + c_2 S[\pi_\theta](s_t) \Big]
+```
+
 
 where c1,c2 are coefficients, and S denotes an entropy bonus, and $L_{t}^{VF}$ is a squared-error loss $(V_θ(s_t) − V_{t}^{targ})^2$.
 
-$$L_{\mathrm{POLICY}} = \min\Big( \frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{old}}(a_t \mid s_t)}\hat A_t,\; \mathrm{clip}\Big(\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{old}}(a_t \mid s_t)},\, 1-\epsilon,\, 1+\epsilon\Big)\hat A_t \Big)$$
-$$L_{\mathrm{VF}} = \frac{1}{2}\, \Big\| V_{\theta}(s) - \Big( \sum_{t=0}^{T} \gamma^t r_t \;\Big|\; s_0 = s \Big) \Big\|_2^2$$
-$$L_{\mathrm{ENTROPY}} = -\sum_x p(x) \log p(x)$$
-$$L_{PPO} = L_{\mathrm{POLICY}} + c_1 L_{\mathrm{VF}} + c_2 L_{\mathrm{ENTROPY}}$$
+
+```math
+L_{\mathrm{POLICY}} = \min\Big( \frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{old}}(a_t \mid s_t)}\hat A_t,\; \mathrm{clip}\Big(\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{old}}(a_t \mid s_t)},\, 1-\epsilon,\, 1+\epsilon\Big)\hat A_t \Big)
+```
+
+
+```math
+L_{\mathrm{VF}} = \frac{1}{2}\, \Big\| V_{\theta}(s) - \Big( \sum_{t=0}^{T} \gamma^t r_t \;\Big|\; s_0 = s \Big) \Big\|_2^2
+```
+
+
+```math
+L_{\mathrm{ENTROPY}} = -\sum_x p(x) \log p(x)
+```
+
+
+```math
+L_{PPO} = L_{\mathrm{POLICY}} + c_1 L_{\mathrm{VF}} + c_2 L_{\mathrm{ENTROPY}}
+```
 
 ![The PPO loss and the clipped probability ratio](videos/14-ppo-loss.gif)
 
@@ -270,18 +320,33 @@ Motivated by the challenges of applying reinforcement learning algorithms on lar
 **Deriving the DPO objective.** We start with the same RL objective as prior work, Eq. 3, under a general reward function r. Following prior work [29, 28, 17, 15], it is straightforward to show that the optimal solution to the KL-constrained reward maximization objective in Eq. 3 takes the form:
 
 
-$$π_r(y | x) = \frac{1}{Z(x)} π_{ref}(y | x)exp (\frac1βr(x,y)),$$
+
+```math
+π_r(y | x) = \frac{1}{Z(x)} π_{ref}(y | x)exp (\frac1βr(x,y)),
+```
+
 where $Z(x) = \sum_y π_{ref}(y | x) exp (\frac1βr(x,y))$ is the partition function. See Appendix A.1 for a complete derivation. Even if we use the MLE estimate rϕ of the ground-truth reward function r∗, it is still expensive to estimate the partition function Z(x) [17, 15], which makes this representation hard to utilize in practice. However, we can rearrange Eq. 4 to express the reward function in terms of its corresponding optimal policy πr, the reference policy πref, and the unknown partition function Z(·). Specifically, we first take the logarithm of both sides of Eq. 4 and then with some algebra we obtain:
 
-$$r(x,y) = βlog \frac {π_r(y | x)} {π_{ref}(y | x)} + β logZ(x).$$
+
+```math
+r(x,y) = βlog \frac {π_r(y | x)} {π_{ref}(y | x)} + β logZ(x).
+```
+
 
 Wecan apply this reparameterization to the ground-truth reward r∗ and corresponding optimal model π∗. Fortunately, the Bradley-Terry model depends only on the difference of rewards between two completions, i.e.,$p∗(y_1 ≻ y_2 | x) = σ(r∗(x,y_1) − r∗(x,y_2)).$ Substituting the reparameterization in Eq. 5 for r∗(x,y) into the preference model Eq. 1, the partition function cancels, and we can express the human preference probability in terms of only the optimal policy π∗ and reference policy πref. Thus, the optimal RLHF policy π∗ under the Bradley-Terry model satisfies the preference model:
 
-$$p∗(y_1 ≻ y_2 | x) = \frac 1  {1 +exp (βlog\frac {π^*(y_2|x)} {π_{ref}(y_2|x)} − β log \frac{π^∗(y_1|x)} {π_{ref}(y_1|x)})}$$
+
+```math
+p∗(y_1 ≻ y_2 | x) = \frac 1  {1 +exp (βlog\frac {π^*(y_2|x)} {π_{ref}(y_2|x)} − β log \frac{π^∗(y_1|x)} {π_{ref}(y_1|x)})}
+```
+
 The derivation is in Appendix A.2. While Eq. 6 uses the Bradley-Terry model, we can similarly derive expressions under the more general Plackett-Luce models [30, 21], shown in Appendix A.3. Nowthat we have the probability of human preference data in terms of the optimal policy rather than the reward model, we can formulate a maximum likelihood objective for a parametrized policy πθ. Analogous to the reward modeling approach (i.e. Eq. 2), our policy objective becomes:
 
 
-$$\mathcal{L}_{\mathrm{DPO}}(\pi_\theta; \pi_{\mathrm{ref}}) = -\,\mathbb{E}_{(x, y_w, y_l) \sim \mathcal{D}}\Big[ \log \sigma\Big( \beta \log \frac{\pi_\theta(y_w \mid x)}{\pi_{\mathrm{ref}}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l \mid x)}{\pi_{\mathrm{ref}}(y_l \mid x)} \Big) \Big]$$
+
+```math
+\mathcal{L}_{\mathrm{DPO}}(\pi_\theta; \pi_{\mathrm{ref}}) = -\,\mathbb{E}_{(x, y_w, y_l) \sim \mathcal{D}}\Big[ \log \sigma\Big( \beta \log \frac{\pi_\theta(y_w \mid x)}{\pi_{\mathrm{ref}}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l \mid x)}{\pi_{\mathrm{ref}}(y_l \mid x)} \Big) \Big]
+```
 
 ![Deriving the DPO objective, its implicit reward and its gradient](videos/17-dpo-derivation.gif)
 
@@ -314,16 +379,28 @@ We review the **RLHF** pipeline in Ziegler et al. (and later [38, 1, 26]). It us
 **Reward Modelling** Phase: In the second phase the SFT model is prompted with prompts x to produce pairs of answers $(y_1,y_2) ∼ π_{SFT}(y | x)$. These are then presented to human labelers who express preferences for one answer, denoted as $y_w ≻ y_l | x$ where $y_w$ and $y_l$ denotes the preferred and dispreferred completion amongst $(y_1,y_2)$ respectively. The preferences are assumed to be generated by some latent reward model $r∗(y,x)$, which we do not have access to. There are a number of approaches used to model preferences, the Bradley-Terry (BT) [5] model being a popular choice (although more general Plackett-Luce ranking models [30, 21] are also compatible with the framework if we have access to several ranked answers). The BT model stipulates that the human preference distribution p∗ can be written as:
 
 
-$$p∗(y_1 ≻ y_2 | x) = \frac {exp(r^∗(x,y_1))} {exp(r^∗(x,y_1)) + exp(r^∗(x,y_2))} .$$
+
+```math
+p∗(y_1 ≻ y_2 | x) = \frac {exp(r^∗(x,y_1))} {exp(r^∗(x,y_1)) + exp(r^∗(x,y_2))} .
+```
+
 Assuming access to a static dataset of comparisons $D = (x^{(i)},y^{(i)}_w ,y^{(i)} _l)^N _{i=1}$ sampled from $p^∗$, we can parametrize a reward model $r_ϕ(x,y)$ and estimate the parameters via maximum likelihood. Framing the problem as a binary classification we have the negative log-likelihood loss:
 
-$$L_R(r_ϕ,D) = −E(x,y_w,y_l)∼D [logσ(r_ϕ(x,y_w) − r_ϕ(x,y_l))]$$
+
+```math
+L_R(r_ϕ,D) = −E(x,y_w,y_l)∼D [logσ(r_ϕ(x,y_w) − r_ϕ(x,y_l))]
+```
+
 
 where σ is the logistic function. In the context of LMs, the network $r_ϕ(x,y)$ is often initialized from the SFT model $π_{SFT}(y | x)$ with the addition of a linear layer on top of the final transformer layer that produces a single scalar prediction for the reward value [49]. To ensure a reward function with lower variance, prior works normalize the rewards, such that $Ex,y∼D [r_ϕ(x,y)] = 0$ for all x.
 
 **RL Fine-Tuning Phase:** During the RL phase, we use the learned reward function to provide feedback to the language model. In particular, we formulate the following optimization problem
 
-$$max_{π_θ} Ex∼D,y∼π_θ(y|x) [r_ϕ(x,y)] − βD_{KL}[π_θ(y | x) || π_{ref}(y | x)]$$
+
+```math
+max_{π_θ} Ex∼D,y∼π_θ(y|x) [r_ϕ(x,y)] − βD_{KL}[π_θ(y | x) || π_{ref}(y | x)]
+```
+
 
 where β is a parameter controlling the deviation from the base reference policy πref, namely the initial SFT model $π^{SFT}$. In practice, the language model policy πθ is also initialized to $π^{SFT}.$ The added constraint is important, as it prevents the model from deviating too far from the distribution on which the reward model is accurate, as well as maintaining the generation diversity and preventing mode-collapse to single high-reward answers. Due to the discrete nature of language generation, this objective is not differentiable and is typically optimized with reinforcement learning. The standard approach [49, 38, 1, 26] has been to construct the reward function $r(x,y) = r_ϕ(x,y) −β(log_{π_θ}(y | x) −logπ_{ref}(y | x))$, and maximize using PPO.
 

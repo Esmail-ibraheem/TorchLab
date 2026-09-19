@@ -121,10 +121,17 @@ for l in out:
         fenced.append(l)
 out = fenced
 
-# The RM loss is inline LaTeX inside a paragraph; drop the clip in right after that paragraph.
+# The RM loss sits mid-sentence inside the "Reward modeling" paragraph, and the clause after it lost its
+# subject ("… is the scalar output … with parameters ,"). Move the equation into its own block (in the
+# paper's form, the one clip 09 animates) and restore the "where r_θ(x, y) …" sentence; then the clip.
+RM_LOSS = r'\mathrm{loss}(\theta) = -\frac{1}{\binom{K}{2}}\, \mathbb{E}_{(x, y_w, y_l) \sim D}\Big[ \log\Big( \sigma\big( r_\theta(x, y_w) - r_\theta(x, y_l) \big) \Big) \Big]'
+RM_WHERE = (r'where $r_\theta(x, y)$ is the scalar output of the reward model for prompt $x$ and completion $y$ with '
+            r'parameters $\theta$, $y_w$ is the preferred completion out of the pair of $y_w$ and $y_l$, and $D$ is the '
+            r'dataset of human comparisons.')
 for j, l in enumerate(out):
     if l.startswith('**Reward modeling (RM).**') and '$$loss(' in l:
-        out[j:j + 1] = [l, ''] + clip('09-rm-loss', 'The reward-model loss')
+        head = l[:l.index(' $$loss(')]  # "… Specifically, the loss function for the reward model is:"
+        out[j:j + 1] = [head] + math(RM_LOSS) + [RM_WHERE, ''] + clip('09-rm-loss', 'The reward-model loss')
         break
 else:
     raise SystemExit('RM loss paragraph not found')

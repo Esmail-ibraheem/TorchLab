@@ -13,7 +13,7 @@
     <img
       alt="TorchLab"
       src="assets/torchlab-light.png"
-      width="550"
+      width="420"
     />
   </picture>
 </p>

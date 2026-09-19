@@ -89,6 +89,49 @@ A collection of research papers associated with Umar Jamil's AI tutorials, cover
 | 21 | 2024 | [KAN: Kolmogorov-Arnold Networks](https://arxiv.org/abs/2404.19756) |
 | 22 | 2025 | [DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning](https://arxiv.org/abs/2501.12948) |
 
+
+## AI Paper - Phase 2
+
+A collection of research papers associated with [Priyam Mazumdar's YouTube channel](https://www.youtube.com/@ExploratoryDataAdventures) and his [PyTorch-Adventures repository](https://github.com/priyammaz/PyTorch-Adventures).
+
+The collection covers computer vision, Transformers, generative models, speech processing, reinforcement learning, and efficient deep-learning systems.
+
+| # | Year | Paper |
+|---|------|-------|
+| 01 | 2006 | [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) |
+| 02 | 2012 | [ImageNet Classification with Deep Convolutional Neural Networks (AlexNet)](https://arxiv.org/abs/1207.0580) |
+| 03 | 2013 | [Auto-Encoding Variational Bayes (VAE)](https://arxiv.org/abs/1312.6114) |
+| 04 | 2013 | [Playing Atari with Deep Reinforcement Learning (DQN)](https://arxiv.org/abs/1312.5602) |
+| 05 | 2014 | [Generative Adversarial Networks (GAN)](https://arxiv.org/abs/1406.2661) |
+| 06 | 2015 | [Deep Residual Learning for Image Recognition (ResNet)](https://arxiv.org/abs/1512.03385) |
+| 07 | 2015 | [Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks (DCGAN)](https://arxiv.org/abs/1511.06434) |
+| 08 | 2015 | [Deep Reinforcement Learning with Double Q-learning](https://arxiv.org/abs/1509.06461) |
+| 09 | 2015 | [Dueling Network Architectures for Deep Reinforcement Learning](https://arxiv.org/abs/1511.06581) |
+| 10 | 2015 | [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) |
+| 11 | 2015 | [Trust Region Policy Optimization (TRPO)](https://arxiv.org/abs/1502.05477) |
+| 12 | 2015 | [Continuous Control with Deep Reinforcement Learning (DDPG)](https://arxiv.org/abs/1509.02971) |
+| 13 | 2015 | [High-Dimensional Continuous Control Using Generalized Advantage Estimation (GAE)](https://arxiv.org/abs/1506.02438) |
+| 14 | 2016 | [Pixel Recurrent Neural Networks (PixelRNN / PixelCNN)](https://arxiv.org/abs/1601.06759) |
+| 15 | 2016 | [Gumbel-Softmax: Categorical Reparameterization with Gumbel-Softmax](https://arxiv.org/abs/1611.01144) |
+| 16 | 2016 | [WaveNet: A Generative Model for Raw Audio](https://arxiv.org/abs/1609.03499) |
+| 17 | 2017 | [Attention Is All You Need](https://arxiv.org/abs/1706.03762) |
+| 18 | 2017 | [Neural Discrete Representation Learning (VQ-VAE)](https://arxiv.org/abs/1711.00937) |
+| 19 | 2017 | [Wasserstein GAN](https://arxiv.org/abs/1701.07875) |
+| 20 | 2017 | [Unpaired Image-to-Image Translation Using Cycle-Consistent Adversarial Networks (CycleGAN)](https://arxiv.org/abs/1703.10593) |
+| 21 | 2017 | [Proximal Policy Optimization Algorithms (PPO)](https://arxiv.org/abs/1707.06347) |
+| 22 | 2017 | [Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions (Tacotron 2)](https://arxiv.org/abs/1712.05884) |
+| 23 | 2019 | [RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://arxiv.org/abs/1907.11692) |
+| 24 | 2020 | [An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT)](https://arxiv.org/abs/2010.11929) |
+| 25 | 2020 | [Denoising Diffusion Probabilistic Models (DDPM)](https://arxiv.org/abs/2006.11239) |
+| 26 | 2020 | [wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations](https://arxiv.org/abs/2006.11477) |
+| 27 | 2020 | [HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis](https://arxiv.org/abs/2010.05646) |
+| 28 | 2021 | [Learning Transferable Visual Models From Natural Language Supervision (CLIP)](https://arxiv.org/abs/2103.00020) |
+| 29 | 2021 | [Masked Autoencoders Are Scalable Vision Learners (MAE)](https://arxiv.org/abs/2111.06377) |
+| 30 | 2021 | [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752) |
+| 31 | 2022 | [Classifier-Free Diffusion Guidance](https://arxiv.org/abs/2207.12598) |
+| 32 | 2022 | [High Fidelity Neural Audio Compression (EnCodec)](https://arxiv.org/abs/2210.13438) |
+| 33 | 2022 | [FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness](https://arxiv.org/abs/2205.14135) |
+
 ## Next
 
 Candidates for the next packages, roughly in the order they build on each other:

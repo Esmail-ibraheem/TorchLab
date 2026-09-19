@@ -22,7 +22,7 @@ the paper, with figures and — for RLHF — animated clips) with a working impl
 | [diffusion](diffusion/) | [DDPM](https://arxiv.org/abs/2006.11239), [Latent Diffusion](https://arxiv.org/abs/2112.10752) | Stable Diffusion from scratch: VAE encoder / decoder, CLIP text encoder, U-Net with attention, DDPM sampler, Gradio UI | done |
 | [rlhf](rlhf/) | [InstructGPT](https://arxiv.org/abs/2203.02155), [PPO](https://arxiv.org/abs/1707.06347), [DPO](https://arxiv.org/abs/2305.18290), [RLHF survey](https://arxiv.org/abs/2312.14925) | theory walkthrough with 20 animated clips ([`motion/`](rlhf/motion/) is the Motion Canvas source); PPO / DPO fine-tuning code | notes done · code planned |
 
-## Foundational AI Papers
+## Foundational AI Papers - Phase 0
 
 A chronological collection of 30 papers tracing the development of neural networks, representation learning, generative models, and deep learning.
 
@@ -60,7 +60,7 @@ A chronological collection of 30 papers tracing the development of neural networ
 | 30 | 2022 | The Forward-Forward Algorithm: Some Preliminary Investigations |
 
 
-## Umar Jamil — AI Paper Collection
+## AI Papers - Phase 1
 
 A collection of research papers associated with Umar Jamil's AI tutorials, covering Transformers, diffusion models, reinforcement learning, and modern neural architectures.
 

@@ -1,5 +1,6 @@
+# TorchLab 
 
-# <p align="center"> Axon: AI research Lab.🔬 </p>
+<img width="1254" height="1254" alt="ChatGPT Image Sep 19, 2026, 01_19_14 PM" src="https://github.com/user-attachments/assets/768f6aaa-146d-424f-989e-abc324cfd112" />
 
 
 <p align="center">

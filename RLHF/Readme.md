@@ -1,6 +1,3 @@
-> **Version 2 — animated.** Every figure, drawing and equation of the original [Readme.md](Readme.md) is recreated as a short
-> [Motion Canvas](https://motioncanvas.io) clip. The GIFs play inline; each has an MP4 link underneath. Source for every clip: [`motion/`](motion/).
-
 # [InstructGPT](https://arxiv.org/abs/2203.02155)
 ## [Reinforcement Learning from Human Feedback](https://arxiv.org/abs/2312.14925), [PPO](https://arxiv.org/abs/1707.06347), [DPO](https://arxiv.org/abs/2305.18290)
 

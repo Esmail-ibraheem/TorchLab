@@ -1,5 +1,3 @@
-# TorchLab 
-
 <p align="center">
   <picture>
     <source

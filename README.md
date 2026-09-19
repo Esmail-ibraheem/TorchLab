@@ -4,11 +4,11 @@
   <picture>
     <source
       media="(prefers-color-scheme: dark)"
-      srcset="assets/torchlab-dark.png"
+      srcset="assets/torchlab-light.png"
     />
     <source
       media="(prefers-color-scheme: light)"
-      srcset="assets/torchlab-light.png"
+      srcset="assets/torchlab-dark.png"
     />
     <img
       alt="TorchLab"

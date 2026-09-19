@@ -1,7 +1,22 @@
 # TorchLab 
 
-<img width="1254" height="1254" alt="ChatGPT Image Sep 19, 2026, 01_19_14 PM" src="https://github.com/user-attachments/assets/768f6aaa-146d-424f-989e-abc324cfd112" />
-
+<p align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="assets/torchlab-dark.png"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="assets/torchlab-light.png"
+    />
+    <img
+      alt="TorchLab"
+      src="assets/torchlab-light.png"
+      width="550"
+    />
+  </picture>
+</p>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2307.09288">

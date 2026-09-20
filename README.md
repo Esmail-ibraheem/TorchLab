@@ -93,4 +93,3 @@ TorchLab/
 ```
 
 ---
-- [Reinforcement Learning from Human Feedback survey](https://arxiv.org/abs/2312.14925)

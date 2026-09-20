@@ -132,6 +132,37 @@ The collection covers computer vision, Transformers, generative models, speech p
 | 32 | 2022 | [High Fidelity Neural Audio Compression (EnCodec)](https://arxiv.org/abs/2210.13438) |
 | 33 | 2022 | [FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness](https://arxiv.org/abs/2205.14135) |
 
+
+## AI Paper - Phase 3
+
+A collection of research papers associated with [Aladdin Persson's YouTube channel](https://www.youtube.com/@AladdinPersson) and his [Machine Learning Collection](https://github.com/aladdinpersson/Machine-Learning-Collection).
+
+The collection covers convolutional neural networks, computer vision, object detection, generative adversarial networks, image-to-image translation, and Transformers.
+
+| # | Year | Paper |
+|---|------|-------|
+| 01 | 1998 | [Gradient-Based Learning Applied to Document Recognition (LeNet-5)](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf) |
+| 02 | 2014 | [Very Deep Convolutional Networks for Large-Scale Image Recognition (VGG)](https://arxiv.org/abs/1409.1556) |
+| 03 | 2014 | [Going Deeper with Convolutions (GoogLeNet / Inception v1)](https://arxiv.org/abs/1409.4842) |
+| 04 | 2014 | [Generative Adversarial Networks (GAN)](https://arxiv.org/abs/1406.2661) |
+| 05 | 2014 | [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215) |
+| 06 | 2014 | [Neural Machine Translation by Jointly Learning to Align and Translate (Bahdanau Attention)](https://arxiv.org/abs/1409.0473) |
+| 07 | 2015 | [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597) |
+| 08 | 2015 | [Deep Residual Learning for Image Recognition (ResNet)](https://arxiv.org/abs/1512.03385) |
+| 09 | 2015 | [You Only Look Once: Unified, Real-Time Object Detection (YOLOv1)](https://arxiv.org/abs/1506.02640) |
+| 10 | 2015 | [A Neural Algorithm of Artistic Style (Neural Style Transfer)](https://arxiv.org/abs/1508.06576) |
+| 11 | 2015 | [Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks (DCGAN)](https://arxiv.org/abs/1511.06434) |
+| 12 | 2016 | [Image-to-Image Translation with Conditional Adversarial Networks (Pix2Pix)](https://arxiv.org/abs/1611.07004) |
+| 13 | 2016 | [Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network (SRGAN)](https://arxiv.org/abs/1609.04802) |
+| 14 | 2017 | [Attention Is All You Need (Transformer)](https://arxiv.org/abs/1706.03762) |
+| 15 | 2017 | [Wasserstein GAN (WGAN)](https://arxiv.org/abs/1701.07875) |
+| 16 | 2017 | [Improved Training of Wasserstein GANs (WGAN-GP)](https://arxiv.org/abs/1704.00028) |
+| 17 | 2017 | [Unpaired Image-to-Image Translation Using Cycle-Consistent Adversarial Networks (CycleGAN)](https://arxiv.org/abs/1703.10593) |
+| 18 | 2017 | [Progressive Growing of GANs for Improved Quality, Stability, and Variation (ProGAN)](https://arxiv.org/abs/1710.10196) |
+| 19 | 2018 | [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767) |
+| 20 | 2018 | [ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks](https://arxiv.org/abs/1809.00219) |
+| 21 | 2019 | [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946) |
+
 ## Next
 
 Candidates for the next packages, roughly in the order they build on each other:

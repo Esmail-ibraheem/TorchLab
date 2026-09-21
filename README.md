@@ -26,20 +26,7 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="https://arxiv.org/abs/1706.03762">
-    <img src="https://img.shields.io/badge/arXiv-Transformer-B31B1B" alt="Transformer paper"/>
-  </a>
-  <a href="https://arxiv.org/abs/2307.09288">
-    <img src="https://img.shields.io/badge/arXiv-Llama_2-B31B1B" alt="Llama 2 paper"/>
-  </a>
-  <a href="https://arxiv.org/abs/2006.11239">
-    <img src="https://img.shields.io/badge/arXiv-DDPM-B31B1B" alt="DDPM paper"/>
-  </a>
-  <a href="https://arxiv.org/abs/2203.02155">
-    <img src="https://img.shields.io/badge/arXiv-InstructGPT-B31B1B" alt="InstructGPT paper"/>
-  </a>
-</p>
+
 
 ---
 
@@ -180,46 +167,7 @@ This is the main implementation-focused section of TorchLab.
 
 It combines explanations of research ideas with PyTorch code, model architectures, and practical examples.
 
-### Existing research packages
 
-| Package | Research papers | What's inside | Status |
-|:---|:---|:---|:---|
-| [Transformer](04-papers-in-pytorch/transformer/) | [Attention Is All You Need](https://arxiv.org/abs/1706.03762) | Encoder-decoder architecture, attention, positional encoding, notebooks, and an English-to-Arabic translator | Implemented |
-| [Llama](04-papers-in-pytorch/llama/) | [Llama 2](https://arxiv.org/abs/2307.09288), [RoFormer](https://arxiv.org/abs/2104.09864), [GQA](https://arxiv.org/abs/2305.13245), [RMSNorm](https://arxiv.org/abs/1910.07467) | Llama-style architecture, multiple attention mechanisms, RoPE, RMSNorm, inference, and KV-cache | Implemented |
-| [Diffusion](04-papers-in-pytorch/diffusion/) | [DDPM](https://arxiv.org/abs/2006.11239), [Latent Diffusion](https://arxiv.org/abs/2112.10752) | Stable Diffusion components: VAE, CLIP, U-Net, sampler, and Gradio interface | Implemented |
-| [RLHF](04-papers-in-pytorch/rlhf/) | [InstructGPT](https://arxiv.org/abs/2203.02155), [PPO](https://arxiv.org/abs/1707.06347), [DPO](https://arxiv.org/abs/2305.18290) | Theory walkthrough, animated explanations, and Motion Canvas source | Notes and animations available; fine-tuning code planned |
-
-### Transformer
-
-The [Transformer package](04-papers-in-pytorch/transformer/) explores the original encoder-decoder architecture introduced in *Attention Is All You Need*.
-
-It includes attention mechanisms, positional encoding, encoder and decoder implementations, a complete Transformer model, and an English-to-Arabic translation project.
-
-[Explore Transformer →](04-papers-in-pytorch/transformer/)
-
-### Llama
-
-The [Llama package](04-papers-in-pytorch/llama/) focuses on decoder-only language models and their architectural components.
-
-It contains a configurable Llama-style model, Multi-Head Attention (MHA), Multi-Query Attention (MQA), Grouped-Query Attention (GQA), rotary embeddings, RMSNorm, and KV-cache-based inference.
-
-[Explore Llama →](04-papers-in-pytorch/llama/)
-
-### Diffusion
-
-The [Diffusion package](04-papers-in-pytorch/diffusion/) explores generative image modeling through denoising and latent diffusion.
-
-Its implementation contains a VAE encoder and decoder, CLIP text encoder, attention-based U-Net, DDPM sampler, and Gradio interface.
-
-[Explore Diffusion →](04-papers-in-pytorch/diffusion/)
-
-### RLHF
-
-The [RLHF package](04-papers-in-pytorch/rlhf/) explores how language models are trained to follow instructions and optimized using feedback and preferences.
-
-It includes written explanations, animated learning material, and Motion Canvas source code covering RLHF concepts. PPO and DPO fine-tuning implementations remain on the roadmap.
-
-[Explore RLHF →](04-papers-in-pytorch/rlhf/)
 
 ### Research paper catalog
 

@@ -33,6 +33,12 @@ One folder per topic. Each topic carries its notes and its own implementation:
 | 11 | Evaluation | accuracy, precision / recall, ROC-AUC, calibration | planned |
 | 12 | Probability & information theory refresher | Bayes rule, entropy, KL divergence, MLE | planned |
 
+
+
+https://github.com/user-attachments/assets/e30faf7f-2e98-444f-90bb-408f3dcb6a30
+
+
+
 ## References
 
 - Bishop, *Pattern Recognition and Machine Learning*

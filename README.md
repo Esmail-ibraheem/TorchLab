@@ -1,9 +1,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/torchlab-light.png" />
-    <source media="(prefers-color-scheme: light)" srcset="assets/torchlab-dark.png" />
-    <img alt="TorchLab" src="assets/torchlab-dark.png" width="420" />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/torchlab-dark.png" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/torchlab-light.png" />
+    <img alt="TorchLab" src="assets/torchlab-light.png" width="420" />
   </picture>
 </p>
 
